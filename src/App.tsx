@@ -96,23 +96,25 @@ function App() {
           <SidebarHeader>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton size="lg" asChild>
-                  <a>
-                    <div className="flex aspect-square size-10 items-center justify-center rounded-lg border-2 border-one-green opacity-80">
-                      <p className="tracking-wide text-2xl font-semibold text-one-green">
-                        IF
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-[2px] leading-none">
-                      <span className="font-semibold dark:text-one-white">
-                        PORTFÓLIO
-                      </span>
-                      <span className="dark:text-one-white">
-                        Frameworks para Web
-                      </span>
-                    </div>
-                  </a>
-                </SidebarMenuButton>
+                <a className="flex items-center gap-3 px-2 pt-2 pb-0">
+                  <div
+                    className="flex aspect-square size-10 items-center justify-center rounded-lg 
+                  bg-green-500/10
+              "
+                  >
+                    <p className="tracking-wide text-2xl font-semibold text-one-green ">
+                      IF
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-[2px] leading-none ">
+                    <span className="text-green-200 group-hover:text-green-100 transition-colors duration-300">
+                      PORTFÓLIO
+                    </span>
+                    <span className="text-green-200 group-hover:text-green-100 transition-colors duration-300">
+                      Frameworks para Web
+                    </span>
+                  </div>
+                </a>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarHeader>
@@ -124,21 +126,26 @@ function App() {
                     <SidebarMenuButton asChild>
                       <a
                         href={item.url}
-                        className="font-medium dark:text-one-white mb-1"
+                        className="font-medium text-green-400 hover:text-green-100 transition-colors duration-300 mb-1"
                       >
                         {item.title}
                       </a>
                     </SidebarMenuButton>
                     {item.items?.length ? (
-                      <SidebarMenuSub className="border-one-green transition-all">
-                        {item.items.map((item) => (
-                          <SidebarMenuSubItem key={item.title}>
+                      <SidebarMenuSub className="border-green-800 transition-all">
+                        {item.items.map((subItem) => (
+                          <SidebarMenuSubItem key={subItem.title}>
                             <SidebarMenuSubButton
                               asChild
-                              isActive={item.isActive}
+                              isActive={subItem.isActive}
+                              className={`h-full py-1 ${
+                                subItem.isActive
+                                  ? "text-green-300 bg-green-900/30"
+                                  : "text-green-200 hover:text-green-100"
+                              } transition-colors duration-300`}
                             >
-                              <a href={item.url} className="h-full py-1">
-                                {item.title}
+                              <a href={subItem.url} className="h-full py-1">
+                                {subItem.title}
                               </a>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
@@ -153,7 +160,7 @@ function App() {
           <SidebarRail />
         </Sidebar>
         <SidebarInset className="dark bg-gradient-to-tl from-neutral-700 via-neutral-800 to-neutral-900">
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b dark:bg-[#18181B] shadow-sm">
+          <header className="flex h-16 shrink-0 items-center gap-2 border-b dark:bg-[#18181B] shadow-sm ">
             <div className="flex items-center gap-2 px-3">
               <SidebarTrigger className="text-one-white" />
               <Separator
@@ -192,59 +199,43 @@ function App() {
               </p>
             </section>
 
-            <section className="">
-              <h2 className="text-2xl font-semibold mb-4">Trabalho Prático</h2>
-              <p className="mb-4">
-                With SSR, the page's content is generated on each request. This
-                is useful for pages that display frequently updated data, or for
-                pages with user-specific content.
-              </p>
-              {/* <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium">
-                    pages/ssr-example.js
-                  </span>
-                  {/* <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() =>
-                      copyToClipboard(`
-export async function getServerSideProps() {
-  const res = await fetch('https://api.example.com/data')
-  const data = await res.json()
-  return { props: { data } }
-}
-
-export default function SSRPage({ data }) {
-  return <div>{data.title}</div>
-}
-                  `)
-                    }
-                  >
-                    {copied ? (
-                      <Check className="h-4 w-4" />
-                    ) : (
-                      <Copy className="h-4 w-4" />
-                    )}
-                  </Button> */}
-              {/* </div>  */}
-              {/* <pre className="text-sm overflow-x-auto">
-                  <code>{`
-export async function getServerSideProps() {
-  const res = await fetch('https://api.example.com/data')
-  const data = await res.json()
-  return { props: { data } }
-}
-
-export default function SSRPage({ data }) {
-  return <div>{data.title}</div>
-}
-                `}</code>
-                </pre> */}
-              {/* </div> */}
-            </section>
-
             <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                1ª nota - programação ao vivo
+              </h2>
+              <p className="mb-2">
+                Vai ser uma prova prática, o tema será passado pelo professor
+                48h antes da prova. Será individual.
+              </p>
+              <small className="underline">11 e 18 de dezembro</small>
+            </section>
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                2ª nota - portfólio
+              </h2>
+              <p className="mb-2">
+                O portfólio deve conter tudo que foi passado nas aulas, desde o
+                primeiro dia. É importante ter também todos os projetos e
+                codigos passados em aula (funcionando).
+              </p>
+              <small className="underline">12 de fevereiro</small>
+            </section>
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                3ª nota - aplicação prática
+              </h2>
+              <p className="mb-2">
+                Precisa ser entregue uma API desenvolvida pelo aluno, com pelo
+                menos um endpoint, documentado, com código limpo e validado.
+                <br />
+                Tem um bonus para quem usar aplicação Elastica/Escalável.
+                <br />
+                Precisa estar integrado com um banco de dados e o projeto será
+                testado apenas com a documentação criado pelo aluno.
+              </p>
+              <small className="underline">22 de janeiro - individual</small>
+            </section>
+            {/* <section>
               <h2 className="text-2xl font-semibold mb-4">Learn More</h2>
               <p className="mb-4">
                 For more information on data fetching in Next.js, check out the
@@ -259,7 +250,7 @@ export default function SSRPage({ data }) {
                 Next.js Data Fetching Documentation
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
-            </section>
+            </section> */}
           </div>
         </SidebarInset>
       </SidebarProvider>
